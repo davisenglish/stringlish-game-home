@@ -22,43 +22,27 @@ function LetterSequenceGame() {
       <div className="flex flex-col items-center space-y-3">
         {/* Game Mode Buttons */}
         <div className="flex flex-wrap justify-center items-start gap-3">
-          {/* COUNTDOWN button */}
-          <a 
-            href="https://davisenglish.github.io/sequence-game-countdown/"
-            className="bg-white border border-gray-400 text-black w-52 h-16 text-xl font-semibold rounded flex items-center justify-center hover:bg-gray-50 transition-colors"
-          >
-            COUNTDOWN
-          </a>
-          
-          {/* 5-GUESS button */}
-          <a 
-            href="https://davisenglish.github.io/sequence-game-5-guess/"
-            className="bg-white border border-gray-400 text-black w-52 h-16 text-xl font-semibold rounded flex items-center justify-center hover:bg-gray-50 transition-colors"
-          >
-            5-GUESS
-          </a>
-          
-          {/* FREE PLAY button */}
-          <a 
-            href="https://davisenglish.github.io/sequence-game-free-play/"
-            className="bg-white border border-gray-400 text-black w-52 h-16 text-xl font-semibold rounded flex items-center justify-center hover:bg-gray-50 transition-colors"
-          >
-            FREE PLAY
-          </a>
-          
-          {/* TIMED button */}
+          {/* TIMED button (left) */}
           <a 
             href="https://davisenglish.github.io/sequence-game-timed/"
             className="bg-white border border-gray-400 text-black w-52 h-16 text-xl font-semibold rounded flex items-center justify-center hover:bg-gray-50 transition-colors"
           >
             TIMED
           </a>
+          
+          {/* 5-GUESS button (right) */}
+          <a 
+            href="https://davisenglish.github.io/sequence-game-5-guess/"
+            className="bg-white border border-gray-400 text-black w-52 h-16 text-xl font-semibold rounded flex items-center justify-center hover:bg-gray-50 transition-colors"
+          >
+            5-GUESS
+          </a>
         </div>
       </div>
       
       {/* Footer */}
       <footer className="text-center py-4 mt-8">
-        <p className="text-gray-500 italic text-sm">© 2025 Davis English. All Rights Reserved.</p>
+        <p className="text-gray-500 italic text-sm">© 2026 Davis English. All Rights Reserved.</p>
       </footer>
     </div>
   );
