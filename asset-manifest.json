@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/sequence-game-home/static/css/main.d9a3257a.css",
-    "main.js": "/sequence-game-home/static/js/main.be9725f9.js",
-    "static/js/453.96453769.chunk.js": "/sequence-game-home/static/js/453.96453769.chunk.js",
-    "index.html": "/sequence-game-home/index.html",
-    "main.d9a3257a.css.map": "/sequence-game-home/static/css/main.d9a3257a.css.map",
-    "main.be9725f9.js.map": "/sequence-game-home/static/js/main.be9725f9.js.map",
-    "453.96453769.chunk.js.map": "/sequence-game-home/static/js/453.96453769.chunk.js.map"
+    "main.css": "/stringlish-game-home/static/css/main.d9a3257a.css",
+    "main.js": "/stringlish-game-home/static/js/main.e7c4d402.js",
+    "static/js/453.96453769.chunk.js": "/stringlish-game-home/static/js/453.96453769.chunk.js",
+    "index.html": "/stringlish-game-home/index.html",
+    "main.d9a3257a.css.map": "/stringlish-game-home/static/css/main.d9a3257a.css.map",
+    "main.e7c4d402.js.map": "/stringlish-game-home/static/js/main.e7c4d402.js.map",
+    "453.96453769.chunk.js.map": "/stringlish-game-home/static/js/453.96453769.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.d9a3257a.css",
-    "static/js/main.be9725f9.js"
+    "static/js/main.e7c4d402.js"
   ]
 }
