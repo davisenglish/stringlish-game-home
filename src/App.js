@@ -6,13 +6,13 @@ function LetterSequenceGame() {
       <div className="flex justify-center items-center relative flex-col">
         <img 
           src={process.env.PUBLIC_URL + "/letter-game-logo2.png"} 
-          alt="Sequence Game Logo" 
+          alt="Stringlish Game Logo" 
           className="w-24 h-24 mb-4 object-contain"
           onError={(e) => {
             e.target.style.display = 'none';
           }}
         />
-        <h1 className="text-3xl font-bold">Sequence</h1>
+        <h1 className="text-3xl font-bold">Stringlish</h1>
         <p className="text-gray-500 italic mt-4 text-center">
           Make words.<br />
           Tickle your brain.
