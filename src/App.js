@@ -1,22 +1,42 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope, faBug } from '@fortawesome/free-solid-svg-icons';
+
+/** First line of contact / bug-report email body (Home hub) */
+const CONTACT_VERSION_LINE = 'Version: Stringlish Home';
+/** Contact and bug forms open the mail app addressed to this inbox */
+const CONTACT_TO_EMAIL = 'info@stringlish.com';
 
 function LetterSequenceGame() {
-  const [showContact, setShowContact] = useState(false);
+  const [showContactModal, setShowContactModal] = useState(false);
+  /** Which footer link opened the shared form (header title + icon only). */
+  const [contactModalMode, setContactModalMode] = useState('contact');
   const [contactModalClosing, setContactModalClosing] = useState(false);
   const [contactEmail, setContactEmail] = useState('');
   const [contactSubject, setContactSubject] = useState('');
   const [contactMessage, setContactMessage] = useState('');
 
+  /** Version line is only in the outgoing email body, not shown in the modal. */
+  const buildContactMailBody = () => {
+    const msg = contactMessage.trim();
+    let bodyText = `${CONTACT_VERSION_LINE}\n\n`;
+    const em = contactEmail.trim();
+    if (em) {
+      bodyText += `From: ${em}\n\n`;
+    }
+    bodyText += msg;
+    return bodyText;
+  };
+
   const closeContactModal = () => {
     setContactModalClosing(true);
-    setShowContact(false);
+    setShowContactModal(false);
     setTimeout(() => {
       setContactModalClosing(false);
       setContactEmail('');
       setContactSubject('');
       setContactMessage('');
+      setContactModalMode('contact');
     }, 200);
   };
 
@@ -24,17 +44,11 @@ function LetterSequenceGame() {
   const handleContactSend = () => {
     const msg = contactMessage.trim();
     if (!msg) return;
-    const recipient = 'davisenglishco@gmail.com';
     const subject = encodeURIComponent(
-      (contactSubject.trim() || 'Stringlish — contact').slice(0, 200)
+      (contactSubject.trim() || 'Stringlish - Home').slice(0, 200)
     );
-    let bodyText = 'Version: Stringlish Home\n\n';
-    if (contactEmail.trim()) {
-      bodyText += `From: ${contactEmail.trim()}\n\n`;
-    }
-    bodyText += msg;
-    const body = encodeURIComponent(bodyText);
-    window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
+    const body = encodeURIComponent(buildContactMailBody());
+    window.location.href = `mailto:${CONTACT_TO_EMAIL}?subject=${subject}&body=${body}`;
     closeContactModal();
   };
 
@@ -72,7 +86,7 @@ function LetterSequenceGame() {
               TIMED
             </a>
 
-            {/* 5-GUESS button (right) */}
+            {/* 4-GUESS button (right) */}
             <a
               href="https://davisenglish.github.io/sequence-game-5-guess/"
               className="bg-white border border-gray-400 text-black w-52 h-16 text-xl font-semibold rounded flex items-center justify-center hover:bg-gray-50 transition-colors"
@@ -80,14 +94,14 @@ function LetterSequenceGame() {
               <span className="mr-1.5" aria-hidden="true">
                 🔮
               </span>
-              5-GUESS
+              4-GUESS
             </a>
           </div>
         </div>
       </div>
 
-      {/* Contact — same shell as Rules modal: sticky header / scroll body / sticky footer (ver2 layout) */}
-      {(showContact || contactModalClosing) && (
+      {/* Contact / Report a Bug — same shell as Rules modal: sticky header / scroll body / sticky footer (ver2 layout) */}
+      {(showContactModal || contactModalClosing) && (
         <div
           className={`fixed top-0 left-0 right-0 bottom-0 bg-black bg-opacity-50 flex items-center justify-center z-[9999] ${contactModalClosing ? 'modal-fade-out' : 'modal-fade-in'}`}
           style={{ width: '100vw', height: '100vh', margin: 0, padding: 0 }}
@@ -103,8 +117,12 @@ function LetterSequenceGame() {
           >
             <div className="flex items-center justify-between flex-shrink-0 p-4 sm:p-6 pb-3 border-b border-gray-200 bg-white z-10">
               <h2 id="contact-modal-title" className="text-lg font-bold text-left flex items-center gap-2">
-                <FontAwesomeIcon icon={faEnvelope} className="text-gray-600" />
-                Contact
+                <FontAwesomeIcon
+                  icon={contactModalMode === 'bug' ? faBug : faEnvelope}
+                  className="text-gray-600"
+                  aria-hidden
+                />
+                {contactModalMode === 'bug' ? 'Report a Bug' : 'Contact'}
               </h2>
               <button
                 type="button"
@@ -202,13 +220,30 @@ function LetterSequenceGame() {
 
       {/* Footer - hidden on mobile during gameplay when keyboard is shown */}
       <footer className="text-center flex flex-col items-center gap-1.5 fixed bottom-0 left-0 right-0 z-[15] bg-white border-t border-gray-200 pt-2 pb-[max(8px,env(safe-area-inset-bottom,0px))]">
-        <button
-          type="button"
-          onClick={() => setShowContact(true)}
-          className="text-sm text-gray-500 hover:text-gray-700 underline underline-offset-2"
-        >
-          Contact
-        </button>
+        <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-1">
+          <button
+            type="button"
+            onClick={() => {
+              setContactModalMode('contact');
+              setContactModalClosing(false);
+              setShowContactModal(true);
+            }}
+            className="text-sm text-gray-500 hover:text-gray-700 underline underline-offset-2"
+          >
+            Contact
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              setContactModalMode('bug');
+              setContactModalClosing(false);
+              setShowContactModal(true);
+            }}
+            className="text-sm text-gray-500 hover:text-gray-700 underline underline-offset-2"
+          >
+            Report a Bug
+          </button>
+        </div>
         <p className="text-gray-500 italic text-sm leading-tight">© 2026 Davis English. All Rights Reserved.</p>
       </footer>
     </div>
