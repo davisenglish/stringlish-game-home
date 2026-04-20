@@ -88,7 +88,7 @@ function LetterSequenceGame() {
 
             {/* 4-GUESS button (right) */}
             <a
-              href="https://davisenglish.github.io/sequence-game-5-guess/"
+              href="https://davisenglish.github.io/sequence-game-4-guess/"
               className="bg-white border border-gray-400 text-black w-52 h-16 text-xl font-semibold rounded flex items-center justify-center hover:bg-gray-50 transition-colors"
             >
               <span className="mr-1.5" aria-hidden="true">
